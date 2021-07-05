@@ -34,8 +34,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run script
         run: |
-          pip install black isort pytest aiohttp bs4 requests pandas numpy sklearn folium matplotlib
-          conda install fiona geopandas shapley
+          pip install black isort pytest aiohttp bs4 requests pandas numpy sklearn folium matplotlib fiona geopandas shapley
           ls -la
           isort --check .
           py.test tests
