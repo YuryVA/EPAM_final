@@ -14,8 +14,8 @@ jobs:
           python-version: 3.8
       - name: Install dependencies
         run: |
-          C:\Users\Art\miniconda3/bin/conda env update --file environment.yml --name base
+          %CONDA/bin/conda env update --file environment.yml --name base
       - name: test pytest
         run: |
           conda install pytest
-          C:\Users\Art\miniconda3/bin/pytest
+          %CONDA/bin/pytest
