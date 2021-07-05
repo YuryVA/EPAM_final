@@ -9,13 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Checkout code
-        uses: actions/setup-python@v2
+        uses: conda-incubator/setup-miniconda@v2
         with:
           python-version: 3.8
-      - name: Install dependencies
+      - name: Run pytest
         run: |
-          %CONDA/bin/conda env update --file environment.yml --name base
-      - name: test pytest
-        run: |
-          conda install pytest
-          %CONDA/bin/pytest
+            conda install pytest
+            pytest
+
