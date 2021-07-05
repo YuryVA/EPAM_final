@@ -14,9 +14,8 @@ jobs:
           python-version: 3.8
       - name: Install dependencies
         run: |
-          # $CONDA is an environment variable pointing to the root of the miniconda directory
-          $CONDA/bin/conda env update --file environment.yml --name base
+          C:\Users\Art\miniconda3/bin/conda env update --file environment.yml --name base
       - name: test pytest
         run: |
           conda install pytest
-          $CONDA/bin/pytest
+          C:\Users\Art\miniconda3/bin/pytest
