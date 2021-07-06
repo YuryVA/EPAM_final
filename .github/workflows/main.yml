@@ -14,5 +14,5 @@ jobs:
       - name: test
         working-directory: ./EPAM_final
         run: |
-          pip install -r requirements.yml
+          pip install pytest geopandas aiohttp bs4
           py.test tests
