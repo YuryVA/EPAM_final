@@ -5,18 +5,20 @@ on: push
 
 jobs:
   build-and-run:
+    runs-on: ubuntu-latest
+  
     steps:
-    - uses: actions/checkout@v1
-    - name: Update Conda environment with "requirements.txt"
-      uses: matthewrmshin/conda-action@v1
-      with:
-        args: conda env update -f .EPAM_final/requirements.txt
-    - name: Run "pytest" with the Conda environment
-      uses: matthewrmshin/conda-action@v1
-      with:
-        args: pytest
-    - name: Run pytest
-      working-directory: ./EPAM_final
-      run: |
-          conda install pytest
-          py.test tests 
+      - uses: actions/checkout@v1
+      - name: Update Conda environment with "requirements.txt"
+        uses: matthewrmshin/conda-action@v1
+        with:
+          args: conda env update -f .EPAM_final/requirements.txt
+      - name: Run "pytest" with the Conda environment
+        uses: matthewrmshin/conda-action@v1
+        with:
+          args: pytest
+      - name: Run pytest
+        working-directory: ./EPAM_final
+        run: |
+            conda install pytest
+            py.test tests 
