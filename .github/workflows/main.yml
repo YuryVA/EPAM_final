@@ -17,4 +17,4 @@ jobs:
         working-directory: ./EPAM_final
         run: |
             conda install pytest
-            pytest tests
+            py.test tests
