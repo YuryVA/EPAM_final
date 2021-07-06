@@ -3,21 +3,16 @@ name: CI
 on: push
 
 jobs:
-  build-and-run:
+  code_quality:
     runs-on: ubuntu-latest
+    name: Checks with black, isort and possibly run tests
     container: python:3.8
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Update Conda environment with "requirements.yml"
-        uses: matthewrmshin/conda-action@v1
-        with:
-          args: conda env update -f ./EPAM_final/requirements.txt
-      - name: Run "pytest" with the Conda environment
-        uses: matthewrmshin/conda-action@v1
-        with:
-          args: pytest
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: test
         working-directory: ./EPAM_final
         run: |
-            py.test tests
+          pip install pytest geopandas aiohttp bs4
+          py.test tests
