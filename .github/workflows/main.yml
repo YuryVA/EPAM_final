@@ -13,6 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: test
+        working-directory: ./EPAM_final
         run: |
           pip install pytest
           py.test tests
