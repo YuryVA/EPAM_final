@@ -4,17 +4,17 @@ name: CI
 on: push
 
 jobs:
-  code_quality:
+  build:
     runs-on: ubuntu-latest
-    name: Checks with black, isort and possibly run tests
-    container: python:3.9
 
     steps:
+      - uses: actions/checkout@v2
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: test
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.8
+      - name: Run pytest
         working-directory: ./EPAM_final
         run: |
-          pip install pytest
-          py.test tests
-
+            conda install pytest
+            pytest
