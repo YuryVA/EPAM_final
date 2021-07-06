@@ -1,20 +1,22 @@
+
 name: CI
 
 on: push
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  build-and-run:
     steps:
-      - uses: actions/checkout@v2
-      - name: Checkout code
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          args: conda env update -f .EPAM_final/requirements.txt
-          python-version: 3.8
-      - name: Run pytest
-        working-directory: ./EPAM_final
-        run: |
-            conda install pytest
-            py.test tests
+    - uses: actions/checkout@v1
+    - name: Update Conda environment with "requirements.txt"
+      uses: matthewrmshin/conda-action@v1
+      with:
+        args: conda env update -f .EPAM_final/requirements.txt
+    - name: Run "pytest" with the Conda environment
+      uses: matthewrmshin/conda-action@v1
+      with:
+        args: pytest
+    - name: Run pytest
+      working-directory: ./EPAM_final
+      run: |
+          conda install pytest
+          py.test tests 
