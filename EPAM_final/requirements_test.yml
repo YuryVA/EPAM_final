@@ -1,4 +1,4 @@
-aiohttp @ file:///C:/ci/aiohttp_1614361024229/work
-beautifulsoup4 @ file:///home/linux1/recipes/ci/beautifulsoup4_1610988766420/work
-geopandas @ file:///tmp/build/80754af9/geopandas_1594937497867/work
+aiohttp
+beautifulsoup4
+geopandas
 pytest==6.2.4
