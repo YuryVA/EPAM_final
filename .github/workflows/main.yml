@@ -1,4 +1,3 @@
-
 name: CI
 
 on: push
@@ -10,10 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Checkout code
-        uses: matthewrmshin/conda-action@v1
+        uses: conda-incubator/setup-miniconda@v2
         with:
-          args: conda env update -f ./requirements.yml
-      - name: Run "pytest" with the Conda environment
-        uses: matthewrmshin/conda-action@v1
-        with:
-          args: pytest
+          args: conda env update -f .EPAM_final/requirements.txt
+          python-version: 3.8
+      - name: Run pytest
+        working-directory: ./EPAM_final
+        run: |
+            conda install pytest
+            py.test tests
