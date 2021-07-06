@@ -10,11 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Checkout code
-        uses: conda-incubator/setup-miniconda@v2
+        uses: matthewrmshin/conda-action@v1
         with:
-          python-version: 3.8
-      - name: Run pytest
-        working-directory: ./EPAM_final
-        run: |
-            conda install pytest
-            py.test tests
+          args: conda env update -f ./requirements.yml
+      - name: Run "pytest" with the Conda environment
+        uses: matthewrmshin/conda-action@v1
+        with:
+          args: pytest
