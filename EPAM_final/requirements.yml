@@ -5,6 +5,7 @@ aiohttp=3.7.4=py38h2bbff1b_1
 appdirs=1.4.4=py_0
 astroid=2.6.2=py38haa95532_0
 async-timeout=3.0.1=py38haa95532_0
+atomicwrites=1.4.0=py_0
 attrs=21.2.0=pyhd3eb1b0_0
 beautifulsoup4=4.9.3=pyha847dfd_0
 black=19.10b0=py_0
@@ -47,6 +48,7 @@ icu=58.2=ha925a31_3
 identify=2.2.10=pyhd8ed1ab_0
 idna=2.10=pyh9f0ad1d_0
 importlib-metadata=3.10.0=py38haa95532_0
+iniconfig=1.1.1=pyhd3eb1b0_0
 intel-openmp=2021.2.0=haa95532_616
 isort=5.9.1=pyhd3eb1b0_0
 jdcal=1.4.1=py_0
@@ -88,6 +90,7 @@ mkl=2021.2.0=haa95532_296
 mkl-service=2.3.0=py38h2bbff1b_1
 mkl_fft=1.3.0=py38h277e83a_2
 mkl_random=1.2.1=py38hf11a4ad_2
+more-itertools=8.8.0=pyhd3eb1b0_0
 msys2-conda-epoch=20160418=1
 multidict=5.1.0=py38h2bbff1b_2
 munch=2.5.0=py_0
@@ -99,14 +102,17 @@ olefile=0.46=py_0
 openjpeg=2.3.0=h5ec785f_1
 openpyxl=3.0.7=pyhd3eb1b0_0
 openssl=1.1.1k=h8ffe710_0
+packaging=20.9=pyhd3eb1b0_0
 pandas=1.2.5=py38hd77b12b_0
 pathspec=0.7.0=py_0
 pcre=8.45=hd77b12b_0
 pillow=8.2.0=py38h4fa10fc_0
 pip=21.1.3=py38haa95532_0
+pluggy=0.13.1=py38haa95532_0
 postgresql=11.2=h3235a2c_0
 pre-commit=2.13.0=py38haa244fe_0
 proj=6.2.1=h9f7ef89_0
+py=1.10.0=pyhd3eb1b0_0
 pycodestyle=2.7.0=pyhd3eb1b0_0
 pycparser=2.20=pyh9f0ad1d_2
 pyflakes=2.3.1=pyhd3eb1b0_0
@@ -116,6 +122,7 @@ pyparsing=2.4.7=pyhd3eb1b0_0
 pyproj=2.6.1.post1=py38h593ac45_1
 pyqt=5.9.2=py38ha925a31_4
 pysocks=1.7.1=py38haa244fe_3
+pytest=6.2.4=py38haa95532_2
 python=3.8.10=hdbf39b2_7
 python-dateutil=2.8.1=pyhd3eb1b0_0
 python_abi=3.8=2_cp38
@@ -157,14 +164,3 @@ yarl=1.6.3=py38h2bbff1b_0
 zipp=3.4.1=pyhd3eb1b0_0
 zlib=1.2.11=h62dcd97_4
 zstd=1.3.7=h508b16e_0
-
-matplotlib~=3.3.4
-pandas~=1.2.5
-geopandas~=0.8.1
-folium~=0.12.0
-numpy~=1.20.2
-scikit-learn~=0.23.2
-shapely~=1.7.1
-aiohttp~=3.7.4
-bs4~=4.9.3
-beautifulsoup4~=4.9.3
