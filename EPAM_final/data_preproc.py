@@ -24,7 +24,9 @@ def offers_data_prep(file_name):
         ["price_per_square", "location_long", "location_lat"]
     ].dropna()
     orginal_df["coordinates"] = pd.Series(
-        orginal_df["location_long"].astype(str) + ", " + orginal_df["location_lat"].astype(str)
+        orginal_df["location_long"].astype(str)
+        + ", "
+        + orginal_df["location_lat"].astype(str)
     )
 
     df_new = pd.DataFrame(
@@ -34,7 +36,9 @@ def offers_data_prep(file_name):
     for pair in orginal_df["coordinates"].unique():
         price = orginal_df[orginal_df["coordinates"] == pair]["price_per_square"].mean()
         loc_lat = orginal_df[orginal_df["coordinates"] == pair]["location_lat"].iloc[0]
-        loc_long = orginal_df[orginal_df["coordinates"] == pair]["location_long"].iloc[0]
+        loc_long = orginal_df[orginal_df["coordinates"] == pair]["location_long"].iloc[
+            0
+        ]
         df_new = df_new.append(
             pd.Series([price, pair, loc_long, loc_lat], index=df_new.columns),
             ignore_index=True,
@@ -207,7 +211,7 @@ def main():
         for app in app_type:
             # дынные из объявлений с усредненной ценой по одинковым точкам
             city_df_unique = offers_data_prep(
-                f"Data_preproc/{city}_{app}_app_offers.xlsx"
+                f"Data_from_web/{city}_{app}_app_offers.xlsx"
             )
             #  читаем сетку в границах города из файла
             grid_city_bound = gpd.read_file(f"Data_preproc/grid_{city}_bound.gpkg")
@@ -233,3 +237,7 @@ def main():
             city_grid_prices = city_grid_prices.set_crs(epsg=4326)
             city_grid_prices.to_file(f"Data_preproc/{city}_{app}_grid_gpd.gpkg")
             # print(f"сохранили сетка с усредненной ценой {city} {app} в файл")
+
+
+if __name__ == "__main__":
+    main()

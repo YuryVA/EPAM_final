@@ -97,3 +97,7 @@ def predictions():
                 ["geoid", "price_per_square", "geometry"]
             ]
             city_grid_to_viz.to_file(f"Data_predict/{city}_{app}_predict.gpkg")
+
+
+if __name__ == "__main__":
+    predictions()

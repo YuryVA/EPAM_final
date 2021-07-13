@@ -61,9 +61,8 @@ def get_links(html: str) -> list:
     links = []
     soup = BeautifulSoup(html, features="html.parser")
     for href in soup.find_all("div", class_="offer__headline"):
-        if href.a.get_text().split()[0] not in ["комната", "дом", "апартаменты"]:
-            link = f'https://www.realtymag.ru{href.a.get("href")}'
-            links.append(link)
+        link = f'https://www.realtymag.ru{href.a.get("href")}'
+        links.append(link)
 
     return links
 
@@ -146,7 +145,7 @@ def get_list_offers_link(url, step) -> list:
     :return: list of offers urls from pool of "steps" pages
     """
 
-    url_list = [f"{url}?page={i}" for i in range(step, step + 20)]
+    url_list = [f"{url}&page={i}" for i in range(step, step + 20)]
     offers_links_list = []
 
     ayo_html_pages = get_htmls(url_list)
@@ -214,7 +213,7 @@ def create_links_file(cities, app_type):
 
     for city_key, city in cities.items():
         for app_key, app in app_type.items():
-            url = f"https://www.realtymag.ru/{city}/{app}/prodazha/"
+            url = f"https://www.realtymag.ru/{city}/{app}/prodazha/?type=1&currency=RUR&price_type=all"
             offers_link_list = []
 
             if app_key == "new" and city_key == "Ekb":
@@ -270,11 +269,15 @@ def main():
                 offers_links_list = file.read().splitlines()
 
                 for step in range(0, 5000, 50):
-                    sub_list = offers_links_list[step:step + 50]
-                    print(sub_list)
+                    sub_list = offers_links_list[step : step + 50]
+                    # print(sub_list)
                     offers_df = offers_df.append(
                         get_offers_data(sub_list), ignore_index=True
                     )
                     # print(step)
 
             offers_df.to_excel(f"Data_from_web/{city}_{app}_app_offers.xlsx")
+
+
+if __name__ == "__main__":
+    main()

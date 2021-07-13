@@ -2,8 +2,39 @@
 plot prices heatmap
 """
 
+import math
+
 import folium
 import geopandas as gpd
+
+
+def bins_thresholds(prices) -> list:
+    """
+    generate colors bin edges
+
+    :param prices: prices pandas.Series
+    :return: bins list
+    """
+    max_price = math.ceil(prices.max())
+    min_price = math.floor(prices.min())
+    prices_10 = round(prices.quantile(q=0.05))
+    prices_90 = round(prices.quantile(q=0.95))
+    delta_12 = round((prices_10 - min_price) / 2)
+    delta_89 = round((max_price - prices_90) / 2)
+    delta_37 = round((prices_90 - prices_10) / 5)
+    bins = [
+        min_price,
+        min_price + delta_12,
+        prices_10,
+        prices_10 + delta_37,
+        prices_10 + 2 * delta_37,
+        prices_10 + 3 * delta_37,
+        prices_10 + 4 * delta_37,
+        prices_90,
+        prices_90 + delta_89,
+        max_price,
+    ]
+    return bins
 
 
 def plot():
@@ -47,12 +78,11 @@ def plot():
             for data_key, value in data_type.items():
 
                 prices = gpd.read_file(value)
+                prices["price_per_"] = prices["price_per_"] / 1000
                 prices = prices.rename(columns={"price_per_": "price_per_square"})
 
-                if data_key == "real":
-                    layer_show = True
-                else:
-                    layer_show = False
+                bins = bins_thresholds(prices["price_per_square"])
+                layer_show = data_key == "real"
 
                 folium.Choropleth(
                     geo_data=prices,
@@ -61,16 +91,18 @@ def plot():
                     columns=["geoid", "price_per_square"],
                     key_on="feature.id",
                     fill_color="YlOrRd",
-                    bins=9,
+                    bins=bins,
                     fill_opacity=0.5,
                     line_weight=0,
                     line_opacity=0,
                     smooth_factor=0.5,
-                    # threshold_scale=[20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000],
-                    legend_name=f"Price per square {data_key}",
+                    legend_name=f"{data_key}: thousands ₽/m²",
                     show=layer_show,
                 ).add_to(heatmap)
 
-            folium.LayerControl().add_to(heatmap)
-
+            folium.LayerControl(collapsed=False).add_to(heatmap)
             heatmap.save(f"Output/{city}_{app_key}.html")
+
+
+if __name__ == "__main__":
+    plot()
