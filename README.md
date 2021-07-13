@@ -4,6 +4,9 @@ Realty estate prices heatmap
 Used data from realtymag.com
 
 Usage:
+ - create conda environment
+   - win: for /f %i in (requirements.txt) do conda install --yes %i
+   - linux: while read requirement; do conda install --yes $requirement; done < requirements.txt
  - run get_data_from_web.py 
    - creates city_app_offers.xlsx with offers data
  - run data_preproc.py - prepare data to be vizualized
