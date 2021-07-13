@@ -19,3 +19,5 @@ Usage:
    - creates city.png
  
 Example output: https://github.com/YuryVA/EPAM_final/tree/main/EPAM_final/Output
+
+Slides: https://github.com/YuryVA/EPAM_final/blob/main/EPAM_final/slides.ipynb
